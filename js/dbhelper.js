@@ -150,7 +150,16 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/images_1x/${restaurant.photograph}`);
+    return (`/images_1x/${restaurant.photograph1x}`);
+  }
+
+  static setUrlForRestaurant(restaurant) {
+    return (`/images_2x/${restaurant.photograph2x}`) + " 1200w, " + (`/images_1x/${restaurant.photograph1x}`) +" 800w, " + (`/images_small/${restaurant.photographSmall}`) + " 320w";
+  }
+
+  static altTagForRestaurant(restaurant) {
+
+    return "This is a "+ (restaurant.cuisine_type)+ " restaurant located in " + (restaurant.neighborhood);
   }
 
   /**
