@@ -1,4 +1,4 @@
-@charset "utf-8";
+
 /* CSS Document */
 
 html,body
@@ -74,8 +74,10 @@ nav h1 a {
   letter-spacing: 10px;
   text-transform: uppercase;
 }
+
+/* here is for the tab index, the color is questionable */
 *:focus {
-  background-color:yellow;
+  background-color: aqua !important;
 }
 .skip {
   position: absolute;

@@ -1,3 +1,4 @@
+/*tablets */
 @media screen and (max-width: 750px) and (min-width:615px) {
   body #restaurant-hours td {
     font-size: 8pt;
@@ -27,7 +28,7 @@
     font-size: 7pt;
   }
 }
-
+/* mobile*/
 @media only screen and (max-width: 610px) {
 
    .inside #breadcrumb {
