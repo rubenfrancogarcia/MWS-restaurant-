@@ -4,6 +4,16 @@ let restaurants,
 var newMap
 var markers = []
 
+//r checking if browser supports serviceworker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(function (registration) {
+    console.log('service worker registered and the scope is ', registration.scope);
+  }),
+  function(err) {
+    console.log('service worker did not register');
+  }
+}
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -71,6 +81,8 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 /**
  * Initialize leaflet map, called from HTML.
  */
+
+ //I got stuck on where to include tab index to avoid tab into the map container and the markers 
 initMap = () => {
   self.newMap = L.map('map', {
         center: [40.722216, -73.987501],
@@ -169,7 +181,6 @@ createRestaurantHTML = (restaurant) => {
   name.innerHTML = restaurant.name;
   li.append(name);
 
-
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
   li.append(neighborhood);
@@ -182,8 +193,14 @@ createRestaurantHTML = (restaurant) => {
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more)
+  /*
+  I was trying to add a tab index of 0 to the h1 element and img elemnt.
+  I tried to setAttribute to li but it didn't capture it well enough, I tried to
+  create a function where I add the tab index to the childNodes of li but got an error.
 
+  */
   return li
+
 }
 
 /**
@@ -212,7 +229,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 } */
-pSelector = () => {
-  const allP = document.querySelectorAll('p');
-  allP.tabindex = 0;
-}
