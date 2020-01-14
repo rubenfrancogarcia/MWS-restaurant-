@@ -9,6 +9,13 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+
+    concat: {
+      dist: {
+       src: ['js/dbhelper.js', 'js/focus.js', 'js/main.js', 'restaurant_info.js'],
+       dest: 'build/scripts.js'
+     }
+   },
     responsive_images: {
       dev: {
         options: {
@@ -69,7 +76,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-mkdir');
-  grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'concat', 'responsive_images']);
+  grunt.registerTask('build', ['clean', 'mkdir', 'copy', 'concat']);
 
 
 };
